@@ -17,7 +17,7 @@ class UserRepository implements UserRepositoryInterface
     /**
      * Register user
      */
-    public function create($data): ?User
+    public function store($data): ?User
     {
         return $this->user->create($data);
     }
@@ -25,7 +25,7 @@ class UserRepository implements UserRepositoryInterface
     /**
      * Find user by email
      */
-    public function findUserByEmail(string $email): ?User
+    public function findByEmail(string $email): ?User
     {
         return $this->user->where('email', $email)->first();
     }
