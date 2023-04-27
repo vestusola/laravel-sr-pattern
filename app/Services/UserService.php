@@ -19,7 +19,7 @@ class UserService
      */
     public function register($data)
     {
-        return $this->userRepository->create($data);
+        return $this->userRepository->store($data);
     }
 
     /**
@@ -27,7 +27,7 @@ class UserService
      */
     public function login($credentials)
     {
-        $user = $this->userRepository->findUserByEmail($credentials['email']);
+        $user = $this->userRepository->findByEmail($credentials['email']);
 
         if (!$user || !Hash::check($credentials['password'], $user->password)) {
             throw new \Exception('Incorrect email/password provided!');
