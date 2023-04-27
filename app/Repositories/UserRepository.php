@@ -17,16 +17,16 @@ class UserRepository implements UserRepositoryInterface
     /**
      * Register user
      */
-    public function register($data)
+    public function create($data)
     {
         return $this->user->create($data);
     }
 
     /**
-     * Login user
+     * Find user by email
      */
-    public function login($credentials)
+    public function findUserByEmail(string $email)
     {
-        
+        return $this->user->where('email', $email)->first();
     }
 }

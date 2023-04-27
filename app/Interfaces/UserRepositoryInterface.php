@@ -4,7 +4,7 @@ namespace App\Interfaces;
 
 interface UserRepositoryInterface
 {
-    public function login($credentials);
+    public function create(array $data);
 
-    public function register($data);
+    public function findUserByEmail(string $email);
 }

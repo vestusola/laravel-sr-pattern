@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Repositories\UserRepository;
+use Illuminate\Support\Facades\Hash;
 
 class UserService
 {
@@ -18,7 +19,7 @@ class UserService
      */
     public function register($data)
     {
-        return $this->userRepository->register($data);
+        return $this->userRepository->create($data);
     }
 
     /**
@@ -26,6 +27,12 @@ class UserService
      */
     public function login($credentials)
     {
-        
+        $user = $this->userRepository->findUserByEmail($credentials['email']);
+
+        if (!$user || !Hash::check($credentials['password'], $user->password)) {
+            throw new \Exception('Incorrect email/password provided!');
+        }
+
+        return $user;
     }
 }
