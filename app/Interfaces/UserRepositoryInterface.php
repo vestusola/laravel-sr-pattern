@@ -2,7 +2,7 @@
 
 namespace App\Interfaces;
 
-interface IUser
+interface UserRepositoryInterface
 {
     public function login($credentials);
 

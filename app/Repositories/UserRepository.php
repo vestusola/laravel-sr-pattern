@@ -3,9 +3,9 @@
 namespace App\Repositories;
 
 use App\Models\User;
-use App\Interfaces\IUser;
+use App\Interfaces\UserRepositoryInterface;
 
-class UserRepository implements IUser
+class UserRepository implements UserRepositoryInterface
 {
     protected $user;
 
