@@ -17,7 +17,7 @@ class PostRepository implements PostRepositoryInterface
 
     public function getAll(): Collection
     {
-        return $this->post->all();
+        return $this->post->where('user_id', auth()->user()->id)->get();
     }
 
     /**
@@ -25,7 +25,7 @@ class PostRepository implements PostRepositoryInterface
      */
     public function findById(int $id): ?Post
     {
-        return $this->post->find($id);
+        return $this->post->where('user_id', auth()->user()->id)->find($id);
     }
 
     /*
@@ -33,7 +33,7 @@ class PostRepository implements PostRepositoryInterface
      */
     public function findByTitle(string $title): ?Post
     {
-        return $this->post->where('title', $title)->first();
+        return $this->post->where('user_id', auth()->user()->id)->where('title', $title)->first();
     }
 
     /**
