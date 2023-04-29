@@ -20,15 +20,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
-        $this->app->bind(UserService::class, function ($app) {
-            return new UserService($app->make(UserRepositoryInterface::class));
-        });
-
-        $this->app->bind(PostRepositoryInterface::class, PostRepository::class);
-        $this->app->bind(PostService::class, function ($app) {
-            return new PostService($app->make(PostRepositoryInterface::class));
-        });
+        Schema::defaultStringLength(191);
     }
 
     /**
@@ -38,6 +30,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Schema::defaultStringLength(191);
+        $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
+        $this->app->bind(UserService::class, function ($app) {
+            return new UserService($app->make(UserRepositoryInterface::class));
+        });
+
+        $this->app->bind(PostRepositoryInterface::class, PostRepository::class);
+        $this->app->bind(PostService::class, function ($app) {
+            return new PostService($app->make(PostRepositoryInterface::class));
+        });
     }
 }
